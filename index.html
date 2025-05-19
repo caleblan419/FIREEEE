@@ -53,7 +53,7 @@
     if (msg.includes("what are you doing")) {
       return "Haha, I am thinking about how to...^^";
     }
-    if (msg.includes("say something") || msg.includes("say anything")) {
+    if (msg.includes("what do you want to say to me") || msg.includes("say what")) {
       return "Let me think... Hope you are happy every day, do what you love, and stay healthy.";
     }
     if (msg.includes("surprise")) {
@@ -66,7 +66,7 @@
     if (msg.includes("bye") || msg.includes("goodbye") || msg.includes("exit")) {
       return "Goodbye, looking forward to chatting next time!";
     }
-    return "Sorry, I didn't understand. You can ask me about 'love', 'hello', 'hate', 'I miss you', 'what are you doing', 'say something', 'surprise', or say 'exit'.";
+    return "Sorry, I didn't understand. You can ask me about 'love', 'hello', 'hate', 'I miss you', 'what are you doing', 'what do you want to say to me', 'surprise', or say 'exit'.";
   }
 
   function sendMessage() {
