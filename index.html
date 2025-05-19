@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Simple Chat Bot</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 600px; margin: auto; }
+  #chat { border: 1px solid #ccc; padding: 10px; height: 300px; overflow-y: auto; }
+  .message { margin: 5px 0; }
+  .user { color: blue; }
+  .bot { color: green; }
+</style>
+</head>
+<body>
+
+<h2>Chat Bot</h2>
+
+<div id="chat"></div>
+
+<input id="input" type="text" placeholder="Say something..." autofocus />
+<button onclick="sendMessage()">Send</button>
+
+<script>
+  const chat = document.getElementById('chat');
+  const input = document.getElementById('input');
+
+  function addMessage(text, sender) {
+    const div = document.createElement('div');
+    div.className = 'message ' + sender;
+    div.textContent = text;
+    chat.appendChild(div);
+    chat.scrollTop = chat.scrollHeight;
+  }
+
+  function botReply(message) {
+    console.log("User message:", message);
+    let msg = message.toLowerCase();
+    msg = msg.replace(/[^\w\s]|_/g, "").replace(/\s+/g, " ");
+    console.log("Processed message:", msg);
+
+    if (msg.includes("love") || msg.includes("like")) {
+      return "I like you.(Of course, and Caleb.)";
+    }
+    if (msg.includes("hello") || msg.includes("hi") || msg.includes("hey")) {
+      return "Hello! I'm LanLan.";
+    }
+    if (msg.includes("hate")) {
+      return "I still love you^^";
+    }
+    if (msg.includes("I miss you")) {
+      return "I miss you too. Would you like to hang out with me?? I am serious.";
+    }
+    if (msg.includes("what are you doing")) {
+      return "Haha, I am thinking about how to...^^";
+    }
+    if (msg.includes("say something") || msg.includes("say anything")) {
+      return "Let me think... Hope you are happy every day, do what you love, and stay healthy.";
+    }
+    if (msg.includes("surprise")) {
+      return "What are you thinking? Want a surprise? DM me, maybe I can make it happen.(maybe)";
+    }
+    if (msg.includes("time")) {
+      const now = new Date();
+      return `The current time is ${now.getHours()}:${now.getMinutes()}.`;
+    }
+    if (msg.includes("bye") || msg.includes("goodbye") || msg.includes("exit")) {
+      return "Goodbye, looking forward to chatting next time!";
+    }
+    return "Sorry, I didn't understand. You can ask me about 'love', 'hello', 'hate', 'I miss you', 'what are you doing', 'say something', 'surprise', or say 'exit'.";
+  }
+
+  function sendMessage() {
+    const userText = input.value;
+    if (!userText) return;
+    addMessage("You: " + userText, "user");
+
+    const reply = botReply(userText);
+    addMessage("LanLan Bot: " + reply, "bot");
+
+    input.value = "";
+    input.focus();
+  }
+
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      sendMessage();
+    }
+  });
+</script>
+
+</body>
+</html>
